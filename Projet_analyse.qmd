@@ -5,23 +5,122 @@ format: html
 editor: visual
 ---
 
-## Quarto
-
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
-
-## Running Code
-
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+## CAH directe avec distance de Gower
 
 ```{r}
-1 + 1
+
+# Importation
+data <- read.csv("C:/Users/HP/Desktop/skuuul/M2/Analyse de donnees avance/Projet/bank.csv", sep=";", stringsAsFactors=TRUE)
+names(data)
+```
+
+## Descriptive des données
+
+```{r}
+summary(data)
+```
+
+```{r}
+library(FactoMineR)
+library(cluster)
+library(factoextra)
 ```
 
 You can add options to executable code like this
 
 ```{r}
-#| echo: false
-2 * 2
+# Calcul de la distance de Gower entre les races de chiens
+d.gower <- daisy(data, metric = "gower")
+
+# CAH sur la matrice de distance avec m�thode de Ward
+cah.gow <- hclust(d.gower, method = "ward.D2")
+plot(cah.gow, cex=0.8)
+
+```
+
+```{r}
+# Choix d'une partition en 4 classes
+k <- 4
+# Variable de partition
+data$parti <- as.factor(cutree(cah.gow, k))
+```
+
+```{r}
+# Memorisation Partition avec Gower
+parti.gow <- chien$parti
+```
+
+## CAH sur les facteurs de l'AFDM
+
+```{r}
+afdm.data <- FAMD(data, ncp = Inf)
+afdm.data$eig
+fviz_eig(afdm.data, addlabels = T)
+# On conserve par exemple 4 dimensions
+afdm.chien <- FAMD(data, ncp = 4)
+```
+
+```{r}
+# Partition Interactive
+cah.afdm <- HCPC(afdm.data, nb.clust = 0, proba = 0.30)
+
+```
+
+```{r}
+# Partition Optimale : on retient 5 classes (la partition optimale)
+cah.afdm <- HCPC(afdm.data, nb.clust = -1, proba = 0.30)
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
 ```
 
 The `echo: false` option disables the printing of code (only output is displayed).
