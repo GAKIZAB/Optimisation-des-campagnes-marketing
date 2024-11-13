@@ -32,7 +32,7 @@ You can add options to executable code like this
 # Calcul de la distance de Gower entre les races de chiens
 d.gower <- daisy(data, metric = "gower")
 
-# CAH sur la matrice de distance avec m�thode de Ward
+# CAH sur la matrice de distance avec méthode de Ward
 cah.gow <- hclust(d.gower, method = "ward.D2")
 plot(cah.gow, cex=0.8)
 
@@ -47,7 +47,7 @@ data$parti <- as.factor(cutree(cah.gow, k))
 
 ```{r}
 # Memorisation Partition avec Gower
-parti.gow <- chien$parti
+parti.gow <- data$parti
 ```
 
 ## CAH sur les facteurs de l'AFDM
@@ -56,8 +56,8 @@ parti.gow <- chien$parti
 afdm.data <- FAMD(data, ncp = Inf)
 afdm.data$eig
 fviz_eig(afdm.data, addlabels = T)
-# On conserve par exemple 4 dimensions
-afdm.chien <- FAMD(data, ncp = 4)
+# On prend 2 dimensions
+afdm.data <- FAMD(data, ncp = 2)
 ```
 
 ```{r}
@@ -67,8 +67,8 @@ cah.afdm <- HCPC(afdm.data, nb.clust = 0, proba = 0.30)
 ```
 
 ```{r}
-# Partition Optimale : on retient 5 classes (la partition optimale)
-cah.afdm <- HCPC(afdm.data, nb.clust = -1, proba = 0.30)
+# Partition Optimale : on retient 2 classes (la partition optimale)
+cah.afdm <- HCPC(afdm.data, nb.clust = 2, proba = 0.30)
 ```
 
 ```{r}
