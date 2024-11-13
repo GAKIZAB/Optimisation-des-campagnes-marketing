@@ -26,10 +26,10 @@ library(cluster)
 library(factoextra)
 ```
 
-You can add options to executable code like this
+## CAH sur la distance de Gower
 
 ```{r}
-# Calcul de la distance de Gower entre les races de chiens
+# Calcul de la distance de Gower entre les clients
 d.gower <- daisy(data, metric = "gower")
 
 # CAH sur la matrice de distance avec méthode de Ward
