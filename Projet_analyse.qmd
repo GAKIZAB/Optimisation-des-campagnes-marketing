@@ -6,7 +6,6 @@ editor: visual
 ---
 
 
-a
 Dans ce projet, nous allons entreprendre une analyse approfondie d'un ensemble de données portant sur le comportement d'utilisation de cartes de crédit, englobant 8 636 titulaires de cartes actifs au cours des 6 derniers mois. Cet ensemble de données, qui comprend 17 variables comportementales à l'échelle du client, nous permettra de mieux comprendre les habitudes de consommation et les préférences de nos clients. En analysant ces données, nous visons à optimiser nos stratégies marketing en adoptant une approche de marketing ciblé.
 
 Voici le dictionnaire de l'ensemble des données pour les cartes de crédit :
