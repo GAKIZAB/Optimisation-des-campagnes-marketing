@@ -6,35 +6,157 @@ editor: visual
 ---
 
 
-Dans ce projet, nous allons entreprendre une analyse approfondie d'un ensemble de données portant sur le comportement d'utilisation de cartes de crédit, englobant 8 636 titulaires de cartes actifs au cours des 6 derniers mois. Cet ensemble de données, qui comprend 17 variables comportementales à l'échelle du client, nous permettra de mieux comprendre les habitudes de consommation et les préférences de nos clients. En analysant ces données, nous visons à optimiser nos stratégies marketing en adoptant une approche de marketing ciblé.
 
-Voici le dictionnaire de l'ensemble des données pour les cartes de crédit :
+# **I. Description de la problématique**
 
 
-**SOLDE** : Montant du solde restant sur son compte pour effectuer des achats\
-**BALANCE_FREQUENCY** : À quelle fréquence le solde est mis à jour, score entre 0 et 1 (1 = fréquemment mis à jour, 0 = pas fréquemment mis à jour)\
-**PURCHASES** : Montant des achats effectués à partir du compte\
-**ONEOFF_PURCHASES** : Montant maximum d’achat effectué en une seule fois\
-**INSTALLMENTS_PURCHASES** : Montant de l’achat effectué en plusieurs fois\
-**CASH_ADVANCE** : Paiement anticipé donné par l’utilisateur\
-**PURCHASES_FREQUENCY** : À quelle fréquence les achats sont effectués, score entre 0 et 1 (1 = fréquemment acheté, 0 = pas fréquemment acheté\
-**ONEOFFPURCHASESFREQUENCY** : À quelle fréquence les achats ont lieu en une seule fois (1 = acheté fréquemment, 0 = pas fréquemment acheté)\
-**PURCHASESINSTALLMENTSFREQUENCY** : La fréquence à laquelle les achats en plusieurs fois sont effectués (1 = fréquemment effectué, 0 = pas fréquemment)\
-**CASHADVANCEFREQUENCY** : La fréquence à laquelle l’argent est payé à l’avance \
-**CASHADVANCETRX** : Nombre de transactions effectuées/
-**PURCHASES_TRX « Cash in Advanced »**: Nombre de transactions d’achat effectuées\
-**CREDIT_LIMIT** : Limite de la carte de crédit pour l’utilisateur\
-**PAIEMENTS** : Montant du paiement effectué par l’utilisateur\
-**MINIMUM_PAYMENTS** : Montant minimum des paiements effectués par l’utilisateur\
-**PRCFULLPAYMENT** : Pourcentage du paiement intégral payé par l’utilisateur\
-**DURÉE** : Durée du service de carte de crédit pour l’utilisateur
+Dans un contexte où la concurrence est de plus en plus féroce et où les clients attendent des offres personnalisées, il est essentiel pour les entreprises de mieux comprendre les comportements et les besoins de leur clientèle. Les stratégies marketing traditionnelles, souvent généralistes, montrent leurs limites en ne parvenant pas à répondre aux attentes spécifiques des consommateurs. C'est dans ce cadre que le marketing ciblé, reposant sur une segmentation fine des clients, prend toute son importance.
 
-## Importation des données
+La segmentation client consiste à regrouper les consommateurs en clusters homogènes en fonction de leurs caractéristiques comportementales, démographiques ou financières. Cela permet non seulement d'adapter les campagnes marketing aux besoins spécifiques de chaque segment, mais également d'optimiser l'utilisation des ressources marketing, en concentrant les efforts sur les clients les plus prometteurs ou stratégiques.
+
+Dans ce projet, nous disposons d'un ensemble de données décrivant les comportements financiers des titulaires de cartes de crédit. Ces données, comprenant des variables telles que les montants d'achat, les fréquences de transactions ou les limites de crédit, offrent une opportunité précieuse pour identifier des segments de clientèle. 
+
+**Problématique : Comment regrouper efficacement les clients en segments homogènes à partir de données comportementales afin de développer des stratégies marketing ciblées et optimisées ?**
+
+Pour répondre à cette problématique, nous proposons d'utiliser des méthodes de classification et de clustering. Cette approche permettra de dégager des profils types au sein de la clientèle et de définir des stratégies marketing spécifiques, renforçant ainsi l'efficacité des campagnes et la satisfaction des clients.
+
+# **II. Présentation de la base de données**
+
+## 1. Présentation de la base de données
+
+Pour mener à bien ce projet d'optimisation des campagnes marketing par segmentation client, nous avons utilisé une base de données contenant des informations sur les comportements financiers de **8 636 titulaires de cartes de crédit**. Cette base couvre une période d’analyse des six derniers mois et regroupe des données quantitatives réparties sur 17 variables comportementales à l’échelle individuelle.
+
+Ces données offrent une vue d’ensemble des habitudes d’utilisation des cartes de crédit, notamment les montants dépensés, les fréquences d’achats, et les paiements effectués.
+
+## 2. Description des variables principales
+La base de données est composée des variables suivantes :
+
+- *SOLDE* : Montant du solde restant sur son compte pour effectuer des achats.  
+- *BALANCE_FREQUENCY* : À quelle fréquence le solde est mis à jour, score entre 0 et 1 (1 = fréquemment mis à jour, 0 = pas fréquemment mis à jour).  
+- *PURCHASES* : Montant des achats effectués à partir du compte.  
+- *ONEOFF_PURCHASES* : Montant maximum d’achat effectué en une seule fois.  
+- *INSTALLMENTS_PURCHASES* : Montant de l’achat effectué en plusieurs fois.  
+- *CASH_ADVANCE* : Paiement anticipé donné par l’utilisateur.  
+- *PURCHASES_FREQUENCY* : À quelle fréquence les achats sont effectués, score entre 0 et 1 (1 = fréquemment acheté, 0 = pas fréquemment acheté).  
+- *ONEOFFPURCHASESFREQUENCY* : À quelle fréquence les achats ont lieu en une seule fois (1 = acheté fréquemment, 0 = pas fréquemment acheté).  
+- *PURCHASESINSTALLMENTSFREQUENCY* : La fréquence à laquelle les achats en plusieurs fois sont effectués (1 = fréquemment effectué, 0 = pas fréquemment).  
+- *CASHADVANCEFREQUENCY* : La fréquence à laquelle l’argent est payé à l’avance.  
+- *CASHADVANCETRX* : Nombre de transactions effectuées.  
+- *PURCHASES_TRX* : Nombre de transactions d’achat effectuées.  
+- *CREDIT_LIMIT* : Limite de la carte de crédit pour l’utilisateur.  
+- *PAIEMENTS* : Montant du paiement effectué par l’utilisateur.  
+- *MINIMUM_PAYMENTS* : Montant minimum des paiements effectués par l’utilisateur.  
+- *PRCFULLPAYMENT* : Pourcentage du paiement intégral payé par l’utilisateur.  
+- *DURÉE* : Durée du service de carte de crédit pour l’utilisateur.  
+
+Ces variables seront utilisées pour analyser et comprendre les comportements des utilisateurs, puis pour construire des modèles de classification permettant de segmenter les clients en groupes homogènes. Ces groupes serviront de base pour la mise en place de stratégies marketing personnalisées et plus efficaces.
 
 ```{r}
+## Importation des données
 data <- read.csv("CC GENERAL.csv", row.names=1, sep=';')  
 head(data)
 ```
+
+# **III. Quelques statistiques simples par variable**
+
+```{r}
+# 
+summary(data)
+```
+En s'appuyant sur ces statistiques relatives aux cartes de crédit, on constate une grande diversité dans les comportements financiers des clients. Voici les principales observations :  
+
+- *Solde (BALANCE)* : Les soldes des clients varient entre un minimum de 0, une médiane de 916,9, et un maximum de 19043,1. Ces chiffres mettent en évidence des différences significatives dans l'utilisation des cartes, certains comptes étant inactifs.  
+
+- *Achats (PURCHASES)* : Les montants d'achats révèlent des comportements variés, avec une médiane de 375,4 et un maximum de 49399,57. Bien que la majorité des clients effectuent des dépenses modérées, certains réalisent des achats exceptionnellement élevés.  
+
+- *Avances en espèces (CASH_ADVANCE)* : Les avances en espèces, bien que peu courantes pour de nombreux utilisateurs (médiane de 0), peuvent atteindre des montants très importants, jusqu'à 47137,2. Cela reflète un usage occasionnel mais notable pour certains.  
+
+- *Limites de crédit (CREDIT_LIMIT)* : Les limites de crédit s'échelonnent de 50 à 30000, avec une médiane de 3000. Cette variation montre que certains clients bénéficient d'une flexibilité financière élevée, tandis que d'autres ont des restrictions importantes.  
+
+- *Paiements (PAYMENTS)* : Les paiements effectués par les clients varient entre un minimum de 0,05 et un maximum de 50721,48, avec une médiane de 896,68. Cela montre que certains clients remboursent des montants conséquents, alors que d'autres s'acquittent de paiements limités.  
+
+- *Paiements minimums (MINIMUM_PAYMENTS)* : Les montants minimums payés oscillent entre 0,02 et 76406,21, avec une médiane de 312,45. Ces valeurs indiquent que certains utilisateurs ne paient que le strict minimum, tandis que d'autres réalisent des remboursements significativement plus élevés.  
+
+Ces résultats révèlent une clientèle aux profils variés, allant d'utilisateurs peu actifs à des consommateurs intensifs. Cette diversité souligne l'importance d'une classification précise pour segmenter les clients en groupes homogènes, permettant ainsi d'adopter des stratégies marketing adaptées et ciblées.
+
+
+# **IV. Méthodologie choisie en vue d'obtenir la classification**
+
+
+
+Pour effectuer une classification efficace des clients à partir de données quantitatives, plusieurs méthodes de segmentation sont envisageables. Ces méthodes reposent sur l’analyse des similarités ou des distances entre les observations pour regrouper les individus en classes homogènes. Voici un aperçu des principales méthodes disponibles, leur fonctionnement, ainsi que le choix final retenu pour ce projet.
+
+
+## **1. AGNES (Agglomerative Nesting)**  
+AGNES est une méthode de classification hiérarchique ascendante. Le processus commence par considérer chaque observation comme une classe distincte, puis fusionne successivement les deux classes les plus proches, en minimisant la variance intra-classe. Ce procédé se poursuit jusqu'à ce que toutes les observations soient regroupées dans une unique classe.  
+*Avantages* : Visualisation claire via un dendrogramme, aucune hypothèse préalable sur le nombre de classes.  
+*Inconvénients* : Peu adapté aux grands ensembles de données et sensible aux outliers.
+
+## **2. HCLUST (Hierarchical Clustering)**  
+HCLUST est une méthode similaire à AGNES mais offrant plus de flexibilité dans le choix des distances (euclidienne, Manhattan, etc.) et des méthodes d’agrégation (Ward, complete linkage, etc.). Cela permet une meilleure personnalisation des regroupements en fonction des besoins.  
+*Avantages* : Flexibilité dans les paramètres, visualisation des regroupements.  
+*Inconvénients* : Complexité calculatoire pour les grands ensembles de données.
+
+## **3. HCPC (Hierarchical Clustering on Principal Components)**  
+HCPC combine une réduction dimensionnelle via l'Analyse en Composantes Principales (ACP) avec une classification hiérarchique. Les composantes principales synthétisent les informations des variables initiales, limitant ainsi la colinéarité et facilitant l'interprétation des classes.  
+*Avantages* : Gère les données corrélées, classes interprétables dans l'espace factoriel, visualisation intuitive via dendrogrammes et axes factoriels.  
+*Inconvénients* : Peut perdre des informations si peu de composantes principales sont retenues.
+
+## **4. K-means**  
+K-means est une méthode de classification non hiérarchique qui regroupe les observations en un nombre prédéfini de classes en minimisant la variance intra-classe. Les centres initiaux des classes sont choisis aléatoirement, et les observations sont assignées aux classes en fonction de la proximité avec ces centres. Les centres sont ensuite recalculés, et le processus est répété jusqu’à convergence.  
+*Avantages* : Rapide et efficace, particulièrement adapté aux grands ensembles de données.  
+*Inconvénients* : Nécessite de fixer à l'avance le nombre de classes et est sensible aux outliers.
+
+
+**Méthodologie retenue** :Pour ce projet, nous avons choisi de combiner deux approches complémentaires : *HCPC* et *K-means*. Ce choix repose sur les considérations suivantes :  
+
+- *HCPC* : Cette méthode permet de réduire la dimensionnalité des données tout en préservant l’essentiel de l’information. En utilisant l’ACP, elle évite les problèmes de colinéarité entre les variables. De plus, la classification hiérarchique facilite l’exploration des regroupements grâce à un dendrogramme.  
+- *K-means* : Cette méthode est particulièrement efficace pour traiter de grands ensembles de données quantitatives comme celui de notre projet. Elle garantit également une rapidité d’exécution et une meilleure adaptation des regroupements aux caractéristiques des données.
+
+
+# **V. Présentation et justification des résultats**
+
+## **1. Méthode ACP + HCPC**
+
+
+Pour mener une analyse structurée et exploitable, il est primordial de sélectionner deux types de variables : **les variables actives** et **les variables illustratives**. Les variables actives sont celles qui servent directement à construire les axes factoriels lors de l'Analyse en Composantes Principales (ACP). Elles forment le socle de la segmentation. En parallèle, les variables illustratives, bien qu’utilisées en complément, permettent d’affiner l’interprétation des classes en apportant des informations supplémentaires sur les comportements des clients.
+
+
+##### **- Variables actives** : 
+Ces variables constituent la base de la segmentation. Elles reflètent les principaux aspects des comportements financiers des clients  
+
+- *BALANCE* : Montant du solde restant sur le compte.  
+- *PURCHASES* : Total des achats effectués à partir du compte.  
+- *CASH_ADVANCE* : Montant des avances en espèces utilisées.  
+- *CREDIT_LIMIT* : Plafond de crédit attribué à l'utilisateur.  
+- *PAYMENTS* : Somme totale des paiements réalisés.  
+- *MIN_PAYMENTS* : Montant minimum des paiements requis.  
+
+Ces informations mesurables permettent de distinguer les profils des clients en se basant sur des indicateurs clés de leur activité financière.
+
+##### **- Variables illustratives** : 
+Les variables illustratives servent à enrichir l’analyse sans intervenir dans la construction initiale des axes. Elles apportent des éclairages précieux sur les comportements spécifiques des clients  
+
+- *BALANCE_FREQ* : Fréquence de mise à jour du solde.  
+- *ONEOFF_PURCHASES* : Montant des achats réalisés en une seule fois.  
+- *INSTALLMENTS_PURCHASES* : Somme des achats payés en plusieurs versements.  
+- *PURCHASES_FREQ* : Régularité des achats.  
+- *ONEOFF_PURCHASES_FREQ* : Fréquence des achats ponctuels.  
+- *PURCHASES_INSTALLMENTS_FREQ* : Fréquence des paiements en plusieurs fois.  
+- *CASH_ADVANCE_FREQ* : Régularité des avances en espèces.  
+- *CASH_ADVANCE_TRX* : Nombre de transactions liées aux avances.  
+- *PURCHASES_TRX* : Nombre total de transactions effectuées.  
+- *PRC_FULL_PAYMENT* : Proportion de paiements intégralement remboursés.  
+- *TENURE* : Durée d'utilisation du service de carte de crédit.  
+
+Les variables illustratives permettent de mieux cerner les comportements clients et d’affiner l’analyse des classes obtenues. Elles aident à :  
+1. Décrypter les habitudes d'achat (par exemple : achats ponctuels ou fractionnés).  
+2. Évaluer la fréquence et l'intensité des interactions financières (mises à jour de solde, transactions).  
+3. Mettre en évidence des indicateurs globaux d'activité et des besoins spécifiques, comme les avances en espèces ou les remboursements complets.  
+
+Ainsi, les variables actives garantissent une segmentation pertinente, tandis que les variables illustratives enrichissent la compréhension des profils identifiés, permettant une analyse complète et précise.
+
+### 1.1 Diminution de dimension avec l'ACP
 
 ```{r}
 # Charger les librairies nécessaires
@@ -46,118 +168,22 @@ library(factoextra)
 library(cluster)
 ```
 
-## Analyse descriptive
-```{r}
-summary(data)
-```
-
-### **Interpretation : **
-Les données relatives aux cartes de crédit montrent que les soldes des clients sont diversifiés, avec une médiane de 1 601.2 et un maximum de 19 043,1, soulignant des comportements financiers hétérogènes. Les comportements d'achat présentent une médiane de 375.4 et un maximum de 49 399.57, illustrant des habitudes de consommation variées. Les avances en espèces sont peu sollicitées, avec une médiane de 0, mais peuvent atteindre 47 137.2 pour certains clients. Les limites de crédit varient également, avec une médiane de 3 000 et un maximum de 30 000, offrant à certains clients une flexibilité financière.
-Ces données révèlent une clientèle aux caractéristiques financières diverses. Par conséquent, la classification est essentielle pour segmenter les clients en groupes homogènes et permettre un marketing ciblé.
-
-### Méthodes
-
-Nous disposons de données purement quantitatives, et plusieurs méthodes de classification peuvent être utilisées pour regrouper les observations en clusters homogènes. Ces méthodes se divisent en trois grandes approches : celles basées sur le calcul direct des distances, celles qui intègrent une réduction de dimension via l’Analyse en Composantes Principales (ACP), et le clustering non hiérarchique avec le k-means.
-
-#### 1. Méthodes basées sur la distance : Distance + AGNES et Distance + HCLUST
-
-**Distance + AGNES (Agglomerative Nesting)**  
-AGNES repose sur le principe du Clustering Hiérarchique Ascendant, où chaque observation débute comme un cluster individuel. À chaque étape, l’algorithme fusionne les deux clusters les plus proches en minimisant la variance intra-cluster. Ce processus se poursuit jusqu'à obtenir un seul cluster englobant toutes les observations. Le résultat est un dendrogramme qui visualise les regroupements, permettant de choisir le nombre optimal de clusters.
-
-**Distance + HCLUST**  
-Cette méthode de clustering hiérarchique offre plus de flexibilité dans le choix des distances et des méthodes d’agrégation (comme Ward ou linkage complet). Elle fonctionne de manière similaire à AGNES, mais elle permet d’explorer diverses approches de regroupement. Le dendrogramme généré offre une visualisation hiérarchique des clusters, facilitant l'interprétation des relations entre les observations.
-
-#### 2. Méthodes combinant réduction dimensionnelle et classification : ACP + HCPC
-
-**Analyse en Composantes Principales (ACP)**  
-L'ACP a pour objectif de réduire la dimensionnalité des données tout en préservant l’essentiel de l’information (variance). Elle transforme les variables quantitatives corrélées en composantes principales indépendantes, en retenant celles qui expliquent la plus grande part de la variance. Ce processus simplifie les données en évitant les problèmes de colinéarité, rendant l'analyse plus efficace.
-
-**Classification Hiérarchique sur Composantes Principales (HCPC)**  
-Le HCPC combine l’ACP avec un clustering hiérarchique, souvent basé sur la méthode de Ward. Après la réduction dimensionnelle, un clustering hiérarchique est appliqué dans l’espace des composantes principales. Les clusters obtenus peuvent être projetés sur les axes factoriels, facilitant ainsi leur interprétation et offrant une vue d’ensemble des regroupements.
-
-#### 3. Classification non hiérarchique : k-means
-
-**Principe et fonctionnement du k-means**  
-Le k-means est une méthode de clustering non hiérarchique qui regroupe les observations en un nombre prédéfini de clusters. Il fonctionne en minimisant la variance intra-cluster. Les centres initiaux des clusters sont choisis aléatoirement, puis chaque observation est assignée au cluster dont le centre est le plus proche, selon la distance euclidienne. Les centres des clusters sont ensuite recalculés comme la moyenne des observations assignées. Ce processus d’assignation et de mise à jour se poursuit jusqu'à ce que les centres ne changent plus ou qu’un critère de convergence soit atteint.
-
-**Détermination du nombre optimal de clusters**  
-Le nombre optimal de clusters est déterminé par la méthode du coude, qui identifie un point où l’inertie intra-cluster diminue de manière significative. Des indices de validation, comme le coefficient silhouette, peuvent également être utilisés pour évaluer la qualité des clusters.
-
-
-
-
-
-
-
-
-### **Comparaison des méthodes**
-
-| Méthode               | Avantages                                                                                     | Limites                                                             |
-|-----------------------|-----------------------------------------------------------------------------------------------|---------------------------------------------------------------------|
-| **Distance + AGNES**  | - Visualisation claire via un dendrogramme                                                   | - Moins adapté pour de grands volumes de données                   |
-
-| **Distance + HCLUST** | - Flexible avec différentes distances/méthodes                                               | - Nécessite de valider le nombre de clusters                       |
-
-| **ACP + HCPC**        | - Gère les corrélations entre variables\ <br>- Clusters interprétables dans l’espace factoriel | - Peut perdre des informations si peu de composantes sont retenues |
-
-| **k-means**           | - Rapide et efficace pour des grandes données<br>- Simple à implémenter                      | - Nécessite de fixer le nombre de clusters<br>- Sensible aux outliers |
-
-
-
-### **Choix méthodologique**
-
-Pour ce projet, nous avons choisi une approche combinant l'Analyse en Composantes Principales (ACP) avec le Clustering Hiérarchique par Partitionnement (HCPC) et la méthode k-means. L'ACP permet de réduire la dimensionnalité en conservant l'essentiel de l'information, tout en simplifiant l'analyse et en évitant la colinéarité. Le HCPC offre une visualisation intuitive des clusters à l'aide de dendrogrammes, rendant les groupes interprétables dans l'espace factoriel. Enfin, la méthode k-means est rapide et efficace pour regrouper les observations, particulièrement adaptée aux grandes bases de données quantitatives.
-
-
-## **1. Méthode ACP + HCPC**
-
-Pour cette analyse, nous avons commencé par la méthode ACP (Analyse en Composantes Principales) combinée avec la HCPC (Classification Hiérarchique des Partitions). Avant d'appliquer cette méthode, nous avons d'abord déterminé les variables actives et illustratives.
-
-Variables actives :
-
-"BALANCE"
-"PURCHASES"
-"CASH_ADVANCE"
-"CREDIT_LIMIT"
-"PAYMENTS"
-"MIN_PAYMENTS"
-Variables illustratives :
-
-"BALANCE_FREQ"
-"ONEOFF_PURCHASES"
-"INSTALLMENTS_PURCHASES"
-"PURCHASES_FREQ"
-"ONEOFF_PURCHASES_FREQ"
-"PURCHASES_INSTALLMENTS_FREQ"
-"CASH_ADVANCE_FREQ"
-"CASH_ADVANCE_TRX"
-"PURCHASES_TRX"
-"PRC_FULL_PAYMENT"
-"TENURE"
-Les variables illustratives approfondissent notre compréhension des comportements d'achat et des besoins financiers des clients. Elles décrivent notamment la fréquence des mises à jour de solde, les habitudes d'achat (ponctuelles ou en plusieurs versements), l'utilisation des cartes, les besoins en liquidité, ainsi que l'activité globale via le nombre total de transactions et le pourcentage de paiements complets.
-
-## Diminution de dimension avec l'ACP
-
 ```{r}
 # Calculer de l'ACP
 res.acp <- PCA(data, ncp=2, scale.unit = T, quanti.sup = c(2,4,5,7,8,9,10,11,12,16,17))
-
-
 ```
 
 ```{r}
 # Observer la decroissance de l'inertie 
 res.acp$eig
 
-```
-
-```{r}
 fviz_eig(res.acp, addlabels = T)
 ```
 
 
-# Classification avec HCPC
+### 1.2 Classification avec HCPC
 
+Une fois l’Analyse en Composantes Principales (ACP) effectuée pour réduire le nombre de dimensions tout en conservant l’essentiel des informations, nous avons utilisé la méthode HCPC. Cette approche combine les avantages de l’ACP et de la classification hiérarchique pour créer des segments de clients à la fois cohérents et faciles à interpréter. 
 ```{r}
 res.hcpc <-
   HCPC(
@@ -166,183 +192,150 @@ res.hcpc <-
     graph = TRUE
   )
 ```
-Nous avons obtenu une classification en 5 classes distinctes, comme le révèle le dendrogramme issu de la méthode HCPC (Hierarchical Clustering on Principal Components), une technique permettant de regrouper des données en fonction de leurs similarités. Ces cinq classes représentent des groupes homogènes qui partagent des caractéristiques communes, ce qui peut aider à identifier des tendances ou des segments au sein des données analysées.
+Suite à l'application de la méthode HCPC, une classification des clients en 5 classes distinctes a été obtenue. Ces classes regroupent des individus présentant des comportements financiers et des habitudes d’utilisation des cartes de crédit similaires, formant ainsi des groupes homogènes.
 
+Afin de garantir la pertinence et la robustesse de cette segmentation, il est essentiel de justifier le choix du nombre de classes retenu. Pour cela, nous avons évalué la partition en utilisant des indicateurs appropriés, tels que la cohésion interne et la séparation entre les classes.
 
-## Détermination de la qualité de la classification
-## *1. Silhoutte*
-Pour évaluer la qualité de notre classification, nous utilisons la **fonction silhouette**, une méthode qui mesure l'efficacité d'un clustering. Cette méthode évalue deux aspects essentiels :
-1. **Cohésion** : À quel point un point est proche des autres points de son propre groupe.
-2. **Séparation** : À quel point un point est éloigné des points des autres groupes.
+## **2. Justification du nombre de classes retenu pour la partition**
+Pour déterminer le nombre optimal de classes lors de la classification, nous avons utilisé deux approches complémentaires : l’analyse visuelle du dendrogramme et le critère de diminution du quotient d’inertie. Ces méthodes permettent de s’assurer que la segmentation est statistiquement robuste.
 
-La moyenne des scores de silhouette, qui varie entre -1 et 1, donne une indication globale de la qualité du clustering :
-- **Moyenne proche de 1** : Clustering bien formé, les points sont clairement associés à leurs clusters.
-- **Moyenne proche de 0** : Les clusters sont mal séparés ou se chevauchent.
-- **Scores négatifs** : Indiquent des erreurs dans l'assignation des points, ceux-ci étant plus proches d’un autre cluster.
+### **2.1. Visualisation du dendrogramme**  
+Le dendrogramme, généré lors de l’étape de classification hiérarchique, est un outil clé pour visualiser les regroupements successifs des individus. Les branches du dendrogramme reflètent les distances entre les observations ou les groupes.
 
+Pour choisir le nombre de classes, nous avons analysé les *hauteurs des paliers* dans le dendrogramme. Les paliers les plus élevés indiquent des regroupements importants, correspondant à des ruptures majeures dans les données. Une coupure du dendrogramme à un niveau où les paliers sont grands permet de maximiser la séparation entre les classes tout en maintenant une cohérence interne au sein de chaque classe. Dans notre cas, une coupure correspondant à 5 classes a été jugée optimale, car elle capture les regroupements significatifs tout en évitant une segmentation excessive.
 
-```{r}
-# Convertir les clusters en un vecteur numérique
-clusters <- as.numeric(as.factor(res.hcpc$data.clust$clust))
+### **2.2. Critère de diminution du quotient d’inertie**  
 
-# Calcul de la matrice de distance
-distance_matrix <- dist(res.acp$ind$coord)
+Nous avons également utilisé le critère de gain d’inertie pour déterminer le nombre optimal de classes. Ce critère repose sur le calcul du ratio entre :  
+- L’inertie inter-classe, qui mesure la séparation entre les classes.  
+- L’inertie totale, qui reflète la variance globale des données.  
 
-# Calcul de l'indice de silhouette
-silhouette_values <- silhouette(clusters, distance_matrix)
-
-# Afficher les scores de silhouette
-print("Coefficients de silhouette :")
-summary(silhouette_values)
-
-# Visualisation des silhouettes
-fviz_silhouette(silhouette_values)
-
-```
-Avec une silhouette moyenne de 0,54, nous pouvons conclure que notre classification est modérément efficace. Cela indique que les clusters formés par notre HCPC présentent une séparation raisonnable.
-
-## *2. Cophenetic*
-
+La commande suivante a permis d’identifier le nombre optimal de classes :  
 
 ```{r}
-# Création du dendrogramme
-hc <- hclust(dist(res.acp$ind$coord), method = "complete")
-dend <- as.dendrogram(hc)
-
-# Calcul du coefficient de cophenetic
-coph <- cophenetic(hc)
-coph_coef <- cor(coph, dist(res.acp$ind$coord))
-cat("Coefficient de cophenetic :", coph_coef, "\n")
-```
-## Description des classes
-```{r}
-res.hcpc$desc.var
-```
-### **Interprétation enrichie et améliorée :**
-
-#### **Cluster 1 : "Clients modérés et prudents"**
-- **Caractéristiques principales :**
-  - Fréquence et montants modérés dans toutes les catégories : **Cash Advance (0.088)**, **Achats en une fois (298)**, et **Achats totaux (589.6)**.
-  - Solde bas (**705.2**) avec une limite de crédit plus faible que la moyenne (**3055.0**).
-  - Fréquence des achats et paiements inférieure à la moyenne.
-- **Interprétation :**
-  - Ces clients utilisent leur carte avec parcimonie et sont probablement à faible risque de crédit. Ils privilégient les paiements minimums et ont une gestion financière conservatrice.
-
----
-
-#### **Cluster 2 : "Utilisateurs axés sur les liquidités"**
-- **Caractéristiques principales :**
-  - Utilisation très élevée de **Cash Advance** : fréquence (**0.30**), montant (**2456.6**), et transactions (**7.71**).
-  - Solde élevé (**3497.3**) et limite de crédit importante (**6346.7**).
-  - Faible utilisation pour les achats en une fois ou échelonnés, fréquence d’achat modérée (**0.35**).
-- **Interprétation :**
-  - Ces clients exploitent principalement leur carte comme une source de liquidité rapide plutôt que pour des achats. Ils pourraient représenter un profil de risque à surveiller.
-
----
-
-#### **Cluster 3 : "Acheteurs réguliers et actifs"**
-- **Caractéristiques principales :**
-  - Montants très élevés pour les **achats totaux (4459.3)**, **achats en une fois (2939.2)**, et **achats échelonnés (1521.0)**.
-  - Fréquence d’achat élevée (**0.86**) et nombre de transactions bien au-dessus de la moyenne (**52.85**).
-  - Limite de crédit élevée (**8821.4**) et paiements importants (**5131.3**).
-- **Interprétation :**
-  - Ces clients sont des utilisateurs intensifs qui maximisent les fonctionnalités de leur carte pour des achats réguliers et importants. Ils sont probablement des clients à forte valeur pour les programmes de fidélité.
-
----
-
-#### **Cluster 4 : "Clients fortement dépendants des liquidités"**
-- **Caractéristiques principales :**
-  - Fréquence et montants exceptionnellement élevés de **Cash Advance (0.42)** et **transactions (14.17)**.
-  - Solde très élevé (**7388.7**) et limite de crédit maximale (**11,027.7**).
-  - Paiements élevés (**5902.7**), mais peu d’achats réguliers.
-- **Interprétation :**
-  - Ces clients utilisent leur carte presque exclusivement pour des avances de trésorerie importantes. Ils présentent potentiellement un profil de risque élevé et pourraient nécessiter une gestion proactive.
-
----
-
-#### **Cluster 5 : "Clients haut de gamme et dépensiers"**
-- **Caractéristiques principales :**
-  - Montants exceptionnels pour les **achats totaux (25,503.4)**, **achats en une fois (19,694.5)**, et **achats échelonnés (5808.9)**.
-  - Fréquence d’achat élevée (**0.90**) avec un nombre de transactions très élevé (**117.89**).
-  - Limite de crédit maximale (**16,462.9**) et paiements conséquents (**27,548.3**).
-- **Interprétation :**
-  - Ces clients sont les plus dépensiers et exploitent pleinement les avantages de leur carte. Ils représentent un segment clé pour les offres haut de gamme et les programmes exclusifs.
-
----
-
-### **Conclusion Générale :**
-Les résultats montrent cinq segments bien différenciés :
-1. **Cluster 1** : Utilisateurs modérés et prudents, faible activité, faible risque.
-2. **Cluster 2** : Axés sur les liquidités, mais à surveiller pour leur dépendance à Cash Advance.
-3. **Cluster 3** : Acheteurs actifs et réguliers, à forte valeur pour les campagnes de fidélité.
-4. **Cluster 4** : Dépendants des avances de trésorerie, à fort potentiel de risque.
-5. **Cluster 5** : Clients haut de gamme et dépensiers, cible idéale pour des offres premium.
-
-
-```{r}
-res.hcpc$desc.ind
+# Indice correspondant à la partition optimale
+which.min(res.hcpc$call$t$quot) + 2
 ```
 
-# K-means**
+Cette commande trouve l'indice du quotient d’inertie minimum, correspondant au point où l’ajout d’une classe supplémentaire n’apporte qu’un gain marginal en termes de séparation. En ajoutant 2 (pour prendre en compte la structure de l’algorithme), nous obtenons le nombre optimal de classes.  
+
+Dans notre cas, cette analyse a confirmé que la segmentation en 5 classes est optimale. Ce choix garantit un bon équilibre entre la compacité des classes (inertie intra-classe faible) et leur séparation (inertie inter-classe élevée). Cette méthode renforce ainsi la justification de notre choix grâce à une approche quantitative.  
+
+
+En combinant ces deux approches (analyse du dendrogramme, critère de gain d’inertie), nous avons validé que le choix de 5 classes représente une segmentation optimale. 
+
+## **3. Méthode k-means**
+Après avoir déterminé que le nombre optimal de classes est de 5, nous avons appliqué la méthode K-means pour affiner la segmentation. Cette méthode de classification non hiérarchique est particulièrement adaptée pour optimiser les regroupements, en minimisant la variance intra-classe et en maximisant la séparation inter-classe.
 
 ```{r}
-
 # Extraire les coordonnées des individus dans l'espace ACP
 coordinates <- res.acp$ind$coord
 # Déterminer le nombre de clusters à utiliser pour k-means
-# Ici on va utiliser le nombre de clusters obtenu avec HCPC
+# Ici on peut utiliser le nombre de clusters obtenu avec HCPC
 nb.clust <- 5
+
 # Effectuer le k-means
-set.seed(123) # Pour la reproductibilité
+set.seed(123)  # Pour la reproductibilité
 kmeans_res <- kmeans(coordinates, centers = nb.clust)
+
 # Ajouter les clusters k-means aux données
 data$kmeans_cluster <- as.factor(kmeans_res$cluster)
+
 # Visualiser les résultats du k-means
-fviz_cluster(kmeans_res, data = coordinates, geom = "point",
-ellipse.type = "convex", main = "K-means Clustering",
-xlab = "Dimension 1", ylab = "Dimension 2") +
-theme_minimal()
+fviz_cluster(kmeans_res, 
+             data = coordinates, 
+             geom = "point",
+             ellipse.type = "convex", 
+             main = "K-means Clustering",
+             xlab = "Dimension 1", 
+             ylab = "Dimension 2") +
+  theme_minimal()
 
+# Afficher les résultats
+summary(kmeans_res)
 ```
 
 
-```{r}
-# Calcul du coefficient de silhouette
-silhouette_kmeans <- silhouette(kmeans_res$cluster, distance_matrix)
+## **4. Comparaison des méthodes CAH et K-means**  
 
-# Afficher les scores de silhouette
-print("Coefficients de silhouette :")
-summary(silhouette_kmeans)
+Pour comparer les résultats obtenus avec les méthodes CAH (Classification Ascendante Hiérarchique) et K-means, nous avons analysé la correspondance entre les classes générées par ces deux approches ainsi que leur qualité respective en termes de cohésion interne et de séparation.
 
-# Visualisation des silhouettes
-fviz_silhouette(silhouette_kmeans)
 
-```
-
-## Comparaison de HCPC et K-means
-
+### **4.1 Analyse de correspondance entre les classes**  
+Le tableau ci-dessous montre la distribution des observations entre les classes issues des deux méthodes :
 ```{r}
 # Extraire les groupes de la CAH
 cah_clusters <- res.hcpc$data.clust$clust # Extraire les clusters de HCPC
-# S'assurer que kmeans_res$cluster est un vecteur et non une liste
+# kmeans_res$cluster 
 kmeans_clusters <- as.vector(kmeans_res$cluster)
 # Créer une table de correspondance entre les clusters de la CAH et ceux du k-means
 table(cah_clusters, kmeans_clusters)
+```
+
+
+
+
+```{r}
+library(gridExtra) # ou library(patchwork)
+
+
+# Calcul du coefficient de silhouette pour K-means
+silhouette_kmeans <- silhouette(kmeans_res$cluster, dist(data.scale))
+
+# Calcul du score de silhouette moyen pour k-means
+mean_silhouette_kmeans <- mean(silhouette_kmeans[, 3])
+print("Coefficients de silhouette de kmeans :")
+summary(mean_silhouette_kmeans)
+
 
 ```
 
-Interpretation : L'analyse des clusters obtenus par les méthodes de classification hiérarchique (CAH) et de K-means met en lumière une correspondance générale satisfaisante, bien que certaines divergences soient notables. En effet, le premier cluster de la CAH se retrouve principalement en accord avec le premier cluster de K-means, tandis que le deuxième cluster de la CAH présente une correspondance marquée avec le troisième cluster de K-means, révélant ainsi une différence significative. En revanche, les clusters 4 et 5 de la CAH correspondent presque parfaitement à leurs équivalents. Bien que les deux approches génèrent des classifications globalement harmonieuses, des disparités notables se manifestent particulièrement dans les clusters 2 et 3.
-
-### **3. Utilisation des Résultats:**
-
-En se référant à la description des classes de classification hiérarchique, nous pouvons développer des solutions de marketing ciblé:
-- Classes 1 & 4 : Produits de crédit et outils éducatifs visant à réduire la dépendance aux avances de trésorerie.
-- Classe 2 : Récompenses modérées et incitations pour encourager une utilisation accrue.
-- Classes 3 & 5 : Offres premium et programmes exclusifs destinés à renforcer la fidélité des clients à forte valeur.
+Les scores silhouette moyens obtenus est de 0.54, indiquant une segmentation cohérente et bien séparée.  
 
 
 
+# **VI. Description des classes obtenues**
 
+```{r}
+res.hcpc$desc.var
+```
+
+
+
+
+# **VII. Conclusion et propositions d'utilisation des résultats**  
+
+## **1. Conclusion générale**  
+
+L’analyse a permis de segmenter les clients en 5 classes distinctes à l’aide de la méthode HCPC, reconnue pour sa fiabilité et sa capacité à capturer les structures complexes des données. Ces segments reflètent des profils variés, allant des utilisateurs prudents aux consommateurs intensifs, offrant une vue détaillée des comportements financiers et des habitudes d’utilisation des cartes de crédit.  
+
+Des variables clés comme le solde (BALANCE), les montants des achats (PURCHASES), et l’utilisation des avances en espèces (CASH_ADVANCE) se sont révélées essentielles pour distinguer les groupes. Ces résultats constituent une base solide pour développer des stratégies marketing sur mesure, adaptées aux besoins spécifiques de chaque segment.  
+
+
+## **2. Propositions pour un marketing ciblé**  
+
+Les segments identifiés peuvent être utilisés individuellement ou regroupés en fonction des objectifs marketing. Voici les recommandations stratégiques selon des regroupements possibles :  
+
+- **Groupe A (Classes 1 et 3)** : **Clients modérés et prudents**  
+  - **Description** : Ces clients ont une utilisation modérée des cartes, avec des dépenses et des transactions limitées.  
+  - **Stratégie marketing** :  
+    - Lancer des programmes de fidélité pour augmenter leur engagement.  
+    - Proposer des promotions sur les paiements fractionnés ou les services associés aux cartes.  
+
+- **Groupe B (Classes 2 et 4)** : **Utilisateurs d’avances et endettés**  
+  - **Description** : Ces clients ont des soldes élevés, utilisent fréquemment les avances en espèces et présentent des niveaux d’endettement supérieurs.  
+  - **Stratégie marketing** :  
+    - Offrir des outils de gestion financière ou des conseils pour réduire leur endettement.  
+    - Proposer des plans de remboursement avantageux ou des produits adaptés pour alléger leur charge financière.  
+
+- **Groupe C (Classe 5)** : **Consommateurs premium**  
+  - **Description** : Ces clients réalisent des dépenses très élevées et utilisent intensivement leur carte, représentant un segment à forte valeur.  
+  - **Stratégie marketing** :  
+    - Renforcer leur fidélité avec des offres premium (accès exclusifs, cashback élevé, assurances supplémentaires).  
+    - Créer un programme VIP personnalisé pour valoriser leur engagement.  
+
+
+En regroupant les segments en fonction des besoins et comportements, cette analyse offre des pistes concrètes pour optimiser les campagnes marketing. Les résultats démontrent que la segmentation basée sur HCPC peut non seulement améliorer la compréhension des clients, mais aussi maximiser l’efficacité des stratégies commerciales, renforçant ainsi la satisfaction client et la rentabilité globale.  
 
 
 The `echo: false` option disables the printing of code (only output is displayed).
